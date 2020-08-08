@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     //instance variables
 
-    private CardView appartments, addappartments, tenants, payments;
+    private CardView appartments, addflats, tenants, payments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +25,14 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         //card id's
         appartments = (CardView) findViewById(R.id.appartments_card);
-        addappartments = (CardView) findViewById(R.id.addapartments_card);
+        addflats = (CardView) findViewById(R.id.addflats_card);
         tenants = (CardView) findViewById(R.id.tenants_card);
         payments = (CardView) findViewById(R.id.payments_card);
 
 
         //Add click listner to cards
         appartments.setOnClickListener(this);
-        addappartments.setOnClickListener(this);
+        addflats.setOnClickListener(this);
         tenants.setOnClickListener(this);
         payments.setOnClickListener(this);
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 i = new Intent(this, Appartments.class);
                 startActivity(i);
                 break;
-            case R.id.addapartments_card:
+            case R.id.addflats_card:
                 i = new Intent(this, AddFlats.class);
                 startActivity(i);
                 break;

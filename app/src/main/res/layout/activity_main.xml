@@ -64,7 +64,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
-            android:id="@+id/addapartments_card"
+            android:id="@+id/addflats_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:rowCount="0"
@@ -90,7 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add Apartments"
+                    android:text="Add Flats"
                     android:textStyle="bold"
                     android:textAlignment="center"
                     android:layout_gravity="center_horizontal"
