@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "929911453123",
+    "firebase_url": "https://landlordproperty.firebaseio.com",
+    "project_id": "landlordproperty",
+    "storage_bucket": "landlordproperty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929911453123:android:85efc46d304398e36ab976",
+        "android_client_info": {
+          "package_name": "com.example.landlordproperty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929911453123-sfnrd23rk4g5l6pfctlcp8baucv2ms7v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuLdBck6kRQpT1dqTuew340U3xtT01QsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929911453123-sfnrd23rk4g5l6pfctlcp8baucv2ms7v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

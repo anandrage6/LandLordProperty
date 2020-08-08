@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:cardCornerRadius="1dp"
+    app:cardElevation="15dp"
+    app:cardUseCompatPadding="true"
+    tools:context=".AddAppartment"
+    tools:ignore="MissingClass">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="1200dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/headerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="Enter Appartment Details"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+
+            android:background="@color/cardview_dark_background" />
+
+
+        <EditText
+            android:id="@+id/fullNameEditText"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:hint="Full Name"
+            android:inputType="text"
+            android:minLines="3"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/phoneNumberEditText"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:hint="Phone Number"
+            android:inputType="text"
+            android:minLines="3"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/flatNumberEditText"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:hint="Flat.No"
+            android:inputType="text"
+            android:minLines="3"
+            android:layout_marginTop="20dp"/>
+        <EditText
+            android:id="@+id/addressEditText"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:hint="Address"
+            android:inputType="text"
+            android:minLines="5"
+            android:layout_marginTop="20dp"/>
+        <EditText
+            android:id="@+id/cityEditText"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:hint="City"
+            android:inputType="text"
+            android:minLines="1"
+            android:layout_marginTop="20dp"/>
+        <EditText
+            android:id="@+id/stateEditText"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:hint="state"
+            android:inputType="text"
+            android:minLines="1"
+            android:layout_marginTop="20dp"/>
+        <EditText
+            android:id="@+id/zipCodeEditText"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:hint="ZipCode"
+            android:inputType="text"
+            android:minLines="1"
+            android:layout_marginTop="20dp"/>
+
+        android:layout_marginTop="20dp"/>
+        <EditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:hint="Description"
+            android:inputType="text"
+            android:minLines="5"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Save"
+            android:textColor="?attr/colorAccent"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="clickButton"/>
+
+    </LinearLayout>
+    </ScrollView>
+
+</androidx.cardview.widget.CardView>
