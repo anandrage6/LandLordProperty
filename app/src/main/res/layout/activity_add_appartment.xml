@@ -43,7 +43,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
-
+            android:src="@drawable/imageplsceholder"
+            android:scaleType="fitXY"
             android:background="@color/cardview_dark_background" />
 
 
@@ -71,17 +72,7 @@
             android:minLines="3"
             android:layout_marginTop="20dp"/>
 
-        <EditText
-            android:id="@+id/flatNumberEditText"
-            android:layout_width="342dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="10dp"
-            android:hint="Flat.No"
-            android:inputType="text"
-            android:minLines="3"
-            android:layout_marginTop="20dp"/>
+
         <EditText
             android:id="@+id/addressEditText"
             android:layout_width="342dp"

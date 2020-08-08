@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,6 +36,8 @@ public class AddAppartment extends AppCompatActivity {
     private static final int Gallery_Code=1;
     private Uri imageUri=null;
     ProgressDialog mprogress;
+    String MobilePattern = "[0-9]{10}";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class AddAppartment extends AppCompatActivity {
         imageBtn = findViewById(R.id.imageButton);
         edtfullname = findViewById(R.id.fullNameEditText);
         edtphonenumber = findViewById(R.id.phoneNumberEditText);
-        edtflatno = findViewById(R.id.flatNumberEditText);
+        //edtflatno = findViewById(R.id.flatNumberEditText);
         edtaddress = findViewById(R.id.addressEditText);
         edtcity = findViewById(R.id.cityEditText);
         edtstate = findViewById(R.id.stateEditText);
@@ -83,15 +86,19 @@ public class AddAppartment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String fullname = edtfullname.getText().toString().trim();
-                final String phonenumber = edtphonenumber.getText().toString().trim();
-                final String flatno = edtflatno.getText().toString().trim();
+                //if(edtphonenumber.length() == 10) {
+                    final String phonenumber = (edtphonenumber.getText().toString().trim());
+                //}else {
+                    //Toast.makeText(getApplicationContext(), "please enter valid Number",Toast.LENGTH_LONG).show();
+                //}
+                //final String flatno = edtflatno.getText().toString().trim();
                 final String address = edtaddress.getText().toString().trim();
                 final String city = edtcity.getText().toString().trim();
                 final String state = edtstate.getText().toString().trim();
                 final String zipcode = edtzipcode.getText().toString().trim();
                 final String description = edtdescription.getText().toString().trim();
 
-                if(!fullname.isEmpty() && !phonenumber.isEmpty() && !flatno.isEmpty() && !address.isEmpty() && !city.isEmpty() &&!state.isEmpty() && !zipcode.isEmpty() && imageUri !=null && !description.isEmpty()||description.isEmpty()){
+                if(!fullname.isEmpty() && !phonenumber.isEmpty()  && !address.isEmpty() && !city.isEmpty() &&!state.isEmpty() && !zipcode.isEmpty() && imageUri !=null && !description.isEmpty()||description.isEmpty()){
 
                     mprogress.setMessage("Uploading.......");
                     mprogress.show();
@@ -108,7 +115,7 @@ public class AddAppartment extends AppCompatActivity {
                                     DatabaseReference  newPost = mReference.push();
                                     newPost.child("FullName").setValue(fullname);
                                     newPost.child("PhoneNumber").setValue(phonenumber);
-                                    newPost.child("FlatNo").setValue(flatno);
+                                    //newPost.child("FlatNo").setValue(flatno);
                                     newPost.child("Address").setValue(address);
                                     newPost.child("City").setValue(city);
                                     newPost.child("State").setValue(state);
