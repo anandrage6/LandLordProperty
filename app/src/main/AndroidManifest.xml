@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AppartmentDetails"></activity>
+        <activity android:name=".AddFlats"></activity>
+        <activity android:name=".AppartmentDetails" />
         <activity android:name=".AddTenant" />
         <activity android:name=".Payment" />
         <activity android:name=".AddAppartment" />

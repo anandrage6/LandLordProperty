@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 startActivity(i);
                 break;
             case R.id.addapartments_card:
-                i = new Intent(this, AddAppartment.class);
+                i = new Intent(this, AddFlats.class);
                 startActivity(i);
                 break;
             case R.id.tenants_card:
