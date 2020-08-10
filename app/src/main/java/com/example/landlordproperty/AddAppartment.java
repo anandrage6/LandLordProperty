@@ -28,7 +28,7 @@ public class AddAppartment extends AppCompatActivity {
 
     //instance variables
     ImageButton imageBtn;
-    EditText edtfullname,edtphonenumber,edtflatno,edtaddress,edtcity,edtstate,edtzipcode,edtdescription;
+    EditText edtpropertyName, edtownerName, edtaddress, edtcity, edtstate, edtzipcode, edtdescription;
     Button btnsave;
     FirebaseDatabase mDatabase;
     DatabaseReference mReference;
@@ -36,7 +36,7 @@ public class AddAppartment extends AppCompatActivity {
     private static final int Gallery_Code=1;
     private Uri imageUri=null;
     ProgressDialog mprogress;
-    String MobilePattern = "[0-9]{10}";
+    //String MobilePattern = "[0-9]{10}";
 
 
     @Override
@@ -46,9 +46,8 @@ public class AddAppartment extends AppCompatActivity {
 
         //finding id's
         imageBtn = findViewById(R.id.imageButton);
-        edtfullname = findViewById(R.id.fullNameEditText);
-        edtphonenumber = findViewById(R.id.phoneNumberEditText);
-        //edtflatno = findViewById(R.id.flatNumberEditText);
+        edtpropertyName = findViewById(R.id.propertyNameEditText);
+        edtownerName = findViewById(R.id.ownerNameEditText);
         edtaddress = findViewById(R.id.addressEditText);
         edtcity = findViewById(R.id.cityEditText);
         edtstate = findViewById(R.id.stateEditText);
@@ -85,20 +84,17 @@ public class AddAppartment extends AppCompatActivity {
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String fullname = edtfullname.getText().toString().trim();
-                //if(edtphonenumber.length() == 10) {
-                    final String phonenumber = (edtphonenumber.getText().toString().trim());
-                //}else {
-                    //Toast.makeText(getApplicationContext(), "please enter valid Number",Toast.LENGTH_LONG).show();
-                //}
-                //final String flatno = edtflatno.getText().toString().trim();
+                final String propertyName = edtpropertyName.getText().toString().trim();
+
+                    final String ownerName = (edtownerName.getText().toString().trim());
+
                 final String address = edtaddress.getText().toString().trim();
                 final String city = edtcity.getText().toString().trim();
                 final String state = edtstate.getText().toString().trim();
                 final String zipcode = edtzipcode.getText().toString().trim();
                 final String description = edtdescription.getText().toString().trim();
 
-                if(!fullname.isEmpty() && !phonenumber.isEmpty()  && !address.isEmpty() && !city.isEmpty() &&!state.isEmpty() && !zipcode.isEmpty() && imageUri !=null && !description.isEmpty()||description.isEmpty()){
+                if(!propertyName.isEmpty() && !ownerName.isEmpty()  && !address.isEmpty() && !city.isEmpty() &&!state.isEmpty() && !zipcode.isEmpty() && imageUri !=null && !description.isEmpty()||description.isEmpty()){
 
                     mprogress.setMessage("Uploading.......");
                     mprogress.show();
@@ -113,9 +109,8 @@ public class AddAppartment extends AppCompatActivity {
 
                                     String t =  task.getResult().toString();
                                     DatabaseReference  newPost = mReference.push();
-                                    newPost.child("FullName").setValue(fullname);
-                                    newPost.child("PhoneNumber").setValue(phonenumber);
-                                    //newPost.child("FlatNo").setValue(flatno);
+                                    newPost.child("PropertyName").setValue(propertyName);
+                                    newPost.child("OwnerName").setValue(ownerName);
                                     newPost.child("Address").setValue(address);
                                     newPost.child("City").setValue(city);
                                     newPost.child("State").setValue(state);

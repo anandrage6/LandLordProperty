@@ -49,25 +49,25 @@
 
 
         <EditText
-            android:id="@+id/fullNameEditText"
+            android:id="@+id/propertyNameEditText"
             android:layout_width="342dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="10dp"
-            android:hint="Full Name"
+            android:hint="Property Name"
             android:inputType="text"
             android:minLines="3"
             android:layout_marginTop="20dp"/>
 
         <EditText
-            android:id="@+id/phoneNumberEditText"
+            android:id="@+id/ownerNameEditText"
             android:layout_width="342dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="10dp"
-            android:hint="Phone Number"
+            android:hint="Owner Name"
             android:inputType="text"
             android:minLines="3"
             android:layout_marginTop="20dp"/>
@@ -102,7 +102,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="10dp"
-            android:hint="state"
+            android:hint="State"
             android:inputType="text"
             android:minLines="1"
             android:layout_marginTop="20dp"/>
@@ -113,7 +113,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="10dp"
-            android:hint="ZipCode"
+            android:hint="Zip/Postalcode"
             android:inputType="text"
             android:minLines="1"
             android:layout_marginTop="20dp"/>
@@ -145,7 +145,7 @@
             android:textColor="?attr/colorAccent"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:onClick="clickButton"/>
+            />
 
     </LinearLayout>
     </ScrollView>

@@ -36,7 +36,7 @@
             android:layout_height="150dp">
 
             <TextView
-                android:id="@+id/nameTextView"
+                android:id="@+id/propertynameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -46,16 +46,16 @@
                 android:inputType="text"
                 android:textStyle="bold"
                 android:textSize="20dp"
-                android:hint="FullName :"
+                android:hint="Property Name :"
                 android:minLines="3" />
             <TextView
-                android:id="@+id/flatnoTextView"
+                android:id="@+id/ownernameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:hint="Flat.No :"
+                android:hint="Owner Name:"
                 android:inputType="text"
                 android:textStyle="bold"
                 android:textSize="20dp"

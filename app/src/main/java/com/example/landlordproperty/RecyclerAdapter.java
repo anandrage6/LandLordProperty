@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,9 +25,9 @@ public class RecyclerAdapter extends FirebaseRecyclerAdapter <PostModel,Recycler
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull PostModel model) {
-        holder.tvfullname.setText(("FullName : "+model.getFullName()));
-        holder.tvflatno.setText(("Flat.No : "+model.getFlatNo()));
-        holder.tvdescription.setText(("Description : "+model.Description));
+        holder.tvpropertyname.setText(("Property Name : "+model.getPropertyName()));
+        holder.tvownername.setText(("Owner Name : "+model.getOwnerName()));
+        holder.tvdescription.setText(("Description : "+model.getDescription()));
 
         //To show image
 
@@ -47,15 +48,15 @@ public class RecyclerAdapter extends FirebaseRecyclerAdapter <PostModel,Recycler
         return new ViewHolder(view);
     }
 
-    //based on id's finding values
+    //based on id's finding values and viewing items
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView  tvfullname,tvphonenumber,tvflatno,tvaddress,tvcity,tvstate,tvzipcode,tvdescription;
+        TextView  tvpropertyname,tvownername,tvaddress,tvcity,tvstate,tvzipcode,tvdescription;
         ImageView Imageadd;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvfullname = itemView.findViewById(R.id.nameTextView);
-            tvflatno = itemView.findViewById(R.id.flatnoTextView);
+            tvpropertyname = itemView.findViewById(R.id.propertynameTextView);
+            tvownername = itemView.findViewById(R.id.ownernameTextView);
             tvdescription = itemView.findViewById(R.id.descriptionTextView);
             Imageadd = itemView.findViewById(R.id.imageButtonAdd);
 

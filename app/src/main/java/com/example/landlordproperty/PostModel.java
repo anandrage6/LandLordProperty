@@ -2,9 +2,8 @@ package com.example.landlordproperty;
 
 public class PostModel {
 
-    String FullName;
-    String PhoneNumber;
-    String FlatNo;
+    String PropertyName;
+    String OwnerName;
     String Address;
     String City;
     String State;
@@ -21,10 +20,9 @@ public class PostModel {
 
     //Parametarised Constuctor
 
-    public PostModel(String fullName, String phoneNumber, String flatNo, String address, String city, String state, String zipcode, String description, String image) {
-        FullName = fullName;
-        PhoneNumber = phoneNumber;
-        FlatNo = flatNo;
+    public PostModel(String propertyName, String ownerName, String address, String city, String state, String zipcode, String description, String image) {
+        PropertyName = propertyName;
+        OwnerName = ownerName;
         Address = address;
         City = city;
         State = state;
@@ -35,28 +33,20 @@ public class PostModel {
 
     //Getters and Setters
 
-    public String getFullName() {
-        return FullName;
+    public String getPropertyName() {
+        return PropertyName;
     }
 
-    public void setFullName(String fullName) {
-        FullName = fullName;
+    public void setPropertyName(String propertyName) {
+        PropertyName = propertyName;
     }
 
-    public String getPhoneNumber() {
-        return PhoneNumber;
+    public String getOwnerName() {
+        return OwnerName;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
-    }
-
-    public String getFlatNo() {
-        return FlatNo;
-    }
-
-    public void setFlatNo(String flatNo) {
-        FlatNo = flatNo;
+    public void setOwnerName(String ownerName) {
+        OwnerName = ownerName;
     }
 
     public String getAddress() {
