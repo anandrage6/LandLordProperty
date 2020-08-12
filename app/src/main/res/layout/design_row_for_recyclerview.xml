@@ -15,8 +15,10 @@
         android:layout_marginTop="1dp"
         android:layout_margin="1dp"
         android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
 
         <ImageView
             android:id="@+id/imageButtonAdd"
@@ -29,49 +31,75 @@
             android:src="@drawable/imageplsceholder" />
 
         <LinearLayout
-            android:layout_marginTop="10dp"
+            android:layout_width="345dp"
+            android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/propertynameTextView"
-                android:layout_width="match_parent"
+                android:layout_width="308dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
 
-                android:inputType="text"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:hint="Property Name :"
-                android:minLines="3" />
+                android:inputType="text"
+                android:minLines="3"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/ownernameTextView"
-                android:layout_width="match_parent"
+                android:layout_width="307dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
                 android:hint="Owner Name:"
                 android:inputType="text"
-                android:textStyle="bold"
+                android:minLines="3"
                 android:textSize="20dp"
-                android:minLines="3" />
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/descriptionTextView"
-                android:layout_width="match_parent"
+                android:layout_width="308dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
                 android:hint="Description :"
                 android:inputType="text"
-                android:textStyle="bold"
+                android:minLines="3"
                 android:textSize="20dp"
-                android:minLines="3" />
+                android:textStyle="bold" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="update"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Delete"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
         </LinearLayout>
-</androidx.cardview.widget.CardView>
+    </LinearLayout>
+       </androidx.cardview.widget.CardView>

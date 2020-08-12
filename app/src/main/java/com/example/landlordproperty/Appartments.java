@@ -1,13 +1,12 @@
 package com.example.landlordproperty;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,7 +38,7 @@ public class Appartments extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<PostModel>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Appartments"), PostModel.class)
                         .build();
-        adapter = new RecyclerAdapter(options);
+        adapter = new RecyclerAdapter(options, this);
         recyclerView.setAdapter(adapter);
     }
     @Override
