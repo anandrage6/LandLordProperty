@@ -9,6 +9,8 @@ public class PostModel {
     String State;
     String Zipcode;
     String Description;
+    // Add flats
+    String FlatNo;
     String Image;
 
 
@@ -19,7 +21,6 @@ public class PostModel {
 
 
     //Parametarised Constuctor
-
     public PostModel(String propertyName, String ownerName, String address, String city, String state, String zipcode, String description, String image) {
         PropertyName = propertyName;
         OwnerName = ownerName;
@@ -96,4 +97,22 @@ public class PostModel {
     public void setImage(String image) {
         Image = image;
     }
+
+    //Parametarised Constuctor Add Flats
+
+
+    public PostModel(String flatNo) {
+        FlatNo = flatNo;
+    }
+
+    //getters and setters Addflats
+
+    public String getFlatNo() {
+        return FlatNo;
+    }
+
+    public void setFlatNo(String flatNo) {
+        FlatNo = flatNo;
+    }
+
 }
