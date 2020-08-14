@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AddFlats extends AppCompatActivity {
 
@@ -32,20 +35,20 @@ public class AddFlats extends AppCompatActivity {
             }
         });
 
-        /*
+
 
 
         //querying from database and get result
-        recyclerView = findViewById(R.id.recyclerView_id);
+        recyclerView = findViewById(R.id.addflatsrecyclerView_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<PostModel> options =
                 new FirebaseRecyclerOptions.Builder<PostModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Appartments"), PostModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Flats"), PostModel.class)
                         .build();
         adapter = new RecyclerAdapter(options, this);
-        recyclerView.setAdapter(adapter);                        */
+        recyclerView.setAdapter(adapter);
     }
-        /*
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -55,7 +58,8 @@ public class AddFlats extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
-    }*/
+    }
+
 
 
 

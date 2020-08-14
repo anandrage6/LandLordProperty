@@ -1,6 +1,8 @@
 package com.example.landlordproperty;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Gravity;
@@ -25,12 +27,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class RecyclerAdapter extends FirebaseRecyclerAdapter <PostModel,RecyclerAdapter.ViewHolder>{
 
-
+//Update Part
 private EditText name = null;
 private EditText owner = null;
 private EditText description = null;
@@ -47,6 +46,7 @@ private  Context context;
 
     @Override
     protected void onBindViewHolder(@NonNull final ViewHolder holder, final int position, @NonNull final PostModel model) {
+        // To Show Appartment Details
         holder.tvpropertyname.setText(("Property Name : "+model.getPropertyName()));
         holder.tvownername.setText(("Owner Name : "+model.getOwnerName()));
         holder.tvdescription.setText(("Description : "+model.getDescription()));
@@ -79,19 +79,36 @@ private  Context context;
         //Delete OnclickListner
         try {
 
-
             holder.btndelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    FirebaseDatabase.getInstance().getReference().child("Appartments")
-                            .child(getRef(position).getKey())
-                            .removeValue()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("Are You Want To Delete Sure?").setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(context, "Successfully Deleted", Toast.LENGTH_LONG).show();
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    FirebaseDatabase.getInstance().getReference().child("Appartments")
+                                            .child(getRef(position).getKey())
+                                            .removeValue()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Toast.makeText(context, "Successfully Deleted", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
                                 }
                             });
+                    AlertDialog dialog =builder.create();
+                    dialog.setTitle("Delete");
+                    dialog.show();
+
                 }
             });
         }catch (Exception e){
@@ -115,8 +132,8 @@ private  Context context;
                 View holderView = dialog.getHeaderView();
 
                 try {
-                    name = (EditText) holderView.findViewById(R.id.updateProperty);
-                    owner =  (EditText) holderView.findViewById(R.id.updateowner);
+                   name = (EditText) holderView.findViewById(R.id.updateProperty);
+                  /*  owner =  (EditText) holderView.findViewById(R.id.updateowner);
                     description = (EditText)  holderView.findViewById(R.id.updatedescription);
                     btn = (Button) holderView.findViewById(R.id.btn_update);
 
@@ -147,6 +164,7 @@ private  Context context;
                             });
                         }
                     });
+                */
                 }catch (Exception e){
                     e.printStackTrace();
                     Log.e("Update Error",e.getMessage());
@@ -183,6 +201,10 @@ private  Context context;
         //Delete Button
         Button btndelete;
 
+        //Add Flats
+        TextView propertynametv, flatnotv, addresstv;
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvpropertyname = itemView.findViewById(R.id.propertynameTextView);
@@ -193,6 +215,8 @@ private  Context context;
             linearLayout = itemView.findViewById(R.id.linearLayout);
             btnupdate = itemView.findViewById(R.id.btn_update);
             btndelete = itemView.findViewById(R.id.btn_delete);
+
+            propertynametv = itemView.findViewById(R.id.propertynameViewText);
 
         }
     }

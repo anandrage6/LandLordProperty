@@ -9,7 +9,14 @@
     app:cardElevation="20dp"
     app:cardUseCompatPadding="true"
     tools:context=".AddFlatsRecyclerView">
+
     <LinearLayout
+        android:id="@+id/flatsLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+
         android:layout_width="345dp"
         android:layout_height="150dp"
         android:layout_margin="10dp"
@@ -24,33 +31,33 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
 
-            android:hint="Property Name :"
+            android:hint=" Property Name :"
             android:inputType="text"
             android:minLines="3"
             android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/ownernameViewText"
+            android:id="@+id/flatnoViewText"
             android:layout_width="307dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:hint="Flat.no:"
+            android:hint=" Flat.no:"
             android:inputType="text"
             android:minLines="3"
             android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/descriptionViewText"
+            android:id="@+id/addressViewText"
             android:layout_width="308dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:hint="Address :"
+            android:hint=" Address :"
             android:inputType="text"
             android:minLines="3"
             android:textSize="20dp"
@@ -61,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="69dp"
         android:orientation="horizontal"
-        android:layout_marginTop="200sp">
+        android:layout_marginTop="20sp">
 
         <Button
             android:id="@+id/btn_update"
@@ -80,5 +87,6 @@
             android:text="Delete"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"/>
+    </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AddDetailsFlat"></activity>
         <activity android:name=".AddFlatsRecyclerView" />
-        <activity android:name=".Content" />
         <activity android:name=".AddFlats" />
         <activity android:name=".AppartmentDetails" />
         <activity android:name=".AddTenant" />
