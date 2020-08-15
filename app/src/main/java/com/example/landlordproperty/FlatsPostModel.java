@@ -1,36 +1,28 @@
 package com.example.landlordproperty;
 
-public class PostModel {
+public class FlatsPostModel {
 
     String PropertyName;
-    String OwnerName;
     String Address;
     String City;
     String State;
     String Zipcode;
-    String Description;
-    String Image;
-
+    String FlatNo;
 
     //Default Constructor
-
-    public PostModel() {
+    public FlatsPostModel() {
     }
 
 
-    //Parametarised Constuctor
-    public PostModel(String propertyName, String ownerName, String address, String city, String state, String zipcode, String description, String image) {
+    //parameterised Constructor
+    public FlatsPostModel(String propertyName, String address, String city, String state, String zipcode, String flatNo) {
         PropertyName = propertyName;
-        OwnerName = ownerName;
         Address = address;
         City = city;
         State = state;
         Zipcode = zipcode;
-        Description = description;
-        Image = image;
+        FlatNo = flatNo;
     }
-
-    //Getters and Setters
 
     public String getPropertyName() {
         return PropertyName;
@@ -38,14 +30,6 @@ public class PostModel {
 
     public void setPropertyName(String propertyName) {
         PropertyName = propertyName;
-    }
-
-    public String getOwnerName() {
-        return OwnerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        OwnerName = ownerName;
     }
 
     public String getAddress() {
@@ -80,20 +64,11 @@ public class PostModel {
         Zipcode = zipcode;
     }
 
-    public String getDescription() {
-        return Description;
+    public String getFlatNo() {
+        return FlatNo;
     }
 
-    public void setDescription(String description) {
-        Description = description;
+    public void setFlatNo(String flatNo) {
+        FlatNo = flatNo;
     }
-
-    public String getImage() {
-        return Image;
-    }
-
-    public void setImage(String image) {
-        Image = image;
-    }
-
 }

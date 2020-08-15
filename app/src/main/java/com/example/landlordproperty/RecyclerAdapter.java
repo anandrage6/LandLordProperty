@@ -29,7 +29,8 @@ import com.squareup.picasso.Picasso;
 
 public class RecyclerAdapter extends FirebaseRecyclerAdapter <PostModel,RecyclerAdapter.ViewHolder>{
 
-//Update Part
+
+    //Update Part
 private EditText name = null;
 private EditText owner = null;
 private EditText description = null;
@@ -56,7 +57,12 @@ private  Context context;
         String imageUri = model.getImage();
         Picasso.get().load(imageUri).into(holder.Imageadd);
 
-        //set onClickListner to details
+        // To Show flats details card View
+
+
+
+
+        //set onClickListner to Appartment full details
 
         try {
 
@@ -183,10 +189,11 @@ private  Context context;
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.design_row_for_recyclerview, parent, false);
+        View view;
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.design_row_for_recyclerview, parent, false);
+            return new ViewHolder(view);
 
-        return new ViewHolder(view);
     }
 
     //based on id's finding values and viewing items
@@ -201,8 +208,8 @@ private  Context context;
         //Delete Button
         Button btndelete;
 
-        //Add Flats
-        TextView propertynametv, flatnotv, addresstv;
+
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -216,8 +223,13 @@ private  Context context;
             btnupdate = itemView.findViewById(R.id.btn_update);
             btndelete = itemView.findViewById(R.id.btn_delete);
 
-            propertynametv = itemView.findViewById(R.id.propertynameViewText);
+
+
+        }
 
         }
     }
-}
+
+
+
+

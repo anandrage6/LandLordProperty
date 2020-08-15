@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddFlats extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    RecyclerAdapter adapter;
+    FlatsRecyclerView flatsAdapter;
     FloatingActionButton floattingbtnadd;
 
 
@@ -41,23 +41,24 @@ public class AddFlats extends AppCompatActivity {
         //querying from database and get result
         recyclerView = findViewById(R.id.addflatsrecyclerView_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        FirebaseRecyclerOptions<PostModel> options =
-                new FirebaseRecyclerOptions.Builder<PostModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Flats"), PostModel.class)
-                        .build();
-        adapter = new RecyclerAdapter(options, this);
-        recyclerView.setAdapter(adapter);
+
+        FirebaseRecyclerOptions <FlatsPostModel> options = new  FirebaseRecyclerOptions.Builder<FlatsPostModel>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Flats"), FlatsPostModel.class)
+                .build();
+        flatsAdapter = new FlatsRecyclerView(options, this);
+        recyclerView.setAdapter(flatsAdapter);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        adapter.startListening();
+        flatsAdapter.startListening();
     }
     @Override
     protected void onStop() {
         super.onStop();
-        adapter.stopListening();
+        flatsAdapter.stopListening();
     }
 
 
