@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTenantDetails">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-32dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Tenant Information"
+                            android:textAlignment="center"
+                            android:textSize="30dp" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="53dp"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="40dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="28dp"
+                            android:src="@drawable/ic_fullname" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="28dp"
+                            android:src="@drawable/ic_email" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="28dp"
+                            android:src="@drawable/ic_call" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginLeft="75dp"
+                        android:layout_marginTop="40dp"
+                        android:orientation="vertical">
+
+
+                        <EditText
+                            android:id="@+id/tenantFullNameEditText"
+                            android:layout_width="334dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="20dp"
+                            android:ems="10"
+                            android:hint="FullName"
+                            android:inputType="textPersonName" />
+
+                        <EditText
+                            android:id="@+id/tenantEmailEditText"
+                            android:layout_width="334dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="20dp"
+                            android:ems="10"
+                            android:inputType="textEmailAddress"
+                            android:hint="Email" />
+
+                        <EditText
+                            android:id="@+id/tenantPhoneNumberEditText"
+                            android:layout_width="334dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="20dp"
+                            android:ems="10"
+                            android:inputType="phone"
+                            android:hint="Phone Number" />
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="Rental Information"
+                            android:textAlignment="center"
+                            android:textSize="30dp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/renttv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text=" Rental Charges :"
+                                    android:textSize="20dp" />
+
+                                <EditText
+                                    android:id="@+id/rentEditText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:inputType="textPersonName"
+                                    android:text="" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="115dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/securitytv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text=" Security Deposit : "
+                                    android:textSize="20dp" />
+
+                                <EditText
+                                    android:id="@+id/securityEditText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:inputType="textPersonName"
+                                    android:text="" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="180dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/startdatetv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text=" Start Date : "
+                                    android:textSize="20dp" />
+
+                                <EditText
+                                    android:id="@+id/startdateEditText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:inputType="textPersonName"
+                                    android:text="" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="245dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/enddatetv"
+                                    android:layout_width="53dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text=" End Date : "
+                                    android:textSize="20dp" />
+
+                                <EditText
+                                    android:id="@+id/endDateEditText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:inputType="textPersonName"
+                                    android:text="" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <TableLayout
+                            android:id="@+id/tablerow"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="300dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20sp"
+                                android:gravity="center_horizontal"
+                                android:text=" Select Property Name"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="20sp" />
+
+                            <Spinner
+                                android:id="@+id/spinnerproperty"
+                                android:layout_width="252dp"
+                                android:layout_height="30sp"
+                                android:layout_marginTop="10dp"
+                                android:spinnerMode="dropdown" />
+
+                            <TextView
+                                android:id="@+id/spinnerPropertyNametv"
+                                android:layout_width="53dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text=" selected PropertyName  "
+                                android:textSize="20dp" />
+
+                        </TableLayout>
+
+                        <TableLayout
+                            android:id="@+id/tablesrow"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="430dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20sp"
+                                android:gravity="center_horizontal"
+                                android:text=" Select Property Name"
+                                android:textAlignment="center"
+                                android:textColor="#000000"
+                                android:textSize="20sp" />
+
+                            <Spinner
+                                android:id="@+id/spinnerflat"
+                                android:layout_width="252dp"
+                                android:layout_height="30sp"
+                                android:layout_marginTop="10dp"
+                                android:spinnerMode="dropdown" />
+
+                            <TextView
+                                android:id="@+id/spinnerFlatnotv"
+                                android:layout_width="53dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text=" selected flat.No  "
+                                android:textSize="20dp" />
+
+                        </TableLayout>
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="560dp"
+                            android:text="Save"
+                            android:textSize="20dp"
+                            android:layout_marginBottom="20dp"/>
+
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

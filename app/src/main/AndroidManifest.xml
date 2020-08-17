@@ -7,12 +7,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Property Management"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddDetailsFlat"></activity>
-        <activity android:name=".AddFlatsRecyclerView" />
+        <activity android:name=".AddTenantDetails"></activity>
+        <activity android:name=".AddDetailsFlat" />
         <activity android:name=".AddFlats" />
         <activity android:name=".AppartmentDetails" />
         <activity android:name=".AddTenant" />
