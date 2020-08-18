@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,11 +25,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class AddAppartment extends AppCompatActivity {
+public class AddAppartment extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     //instance variables
     ImageButton imageBtn;
-    EditText edtpropertyName, edtownerName, edtaddress, edtcity, edtstate, edtzipcode, edtdescription;
+    EditText edtpropertyName, edtownerName, edtaddress, edtcity,  edtzipcode, edtdescription;
+    Spinner statespinn;
     Button btnsave;
     FirebaseDatabase mDatabase;
     DatabaseReference mReference;
@@ -34,6 +38,8 @@ public class AddAppartment extends AppCompatActivity {
     private static final int Gallery_Code=1;
     private Uri imageUri=null;
     ProgressDialog mprogress;
+    String textstate;
+
     //String MobilePattern = "[0-9]{10}";
 
 
@@ -48,13 +54,21 @@ public class AddAppartment extends AppCompatActivity {
         edtownerName = findViewById(R.id.ownerNameEditText);
         edtaddress = findViewById(R.id.addressEditText);
         edtcity = findViewById(R.id.cityEditText);
-        edtstate = findViewById(R.id.stateEditText);
+
         edtzipcode = findViewById(R.id.zipCodeEditText);
         edtdescription = findViewById(R.id.descriptionEditText);
         btnsave = findViewById(R.id.saveBtn);
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child("Appartments");
         mStorage = FirebaseStorage.getInstance().getReference();
+
+
+        //spinner
+        statespinn = findViewById(R.id.stateEditText);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.States, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        statespinn.setAdapter(adapter);
+        statespinn.setOnItemSelectedListener(this);
 
         //dialog progress
         mprogress = new ProgressDialog(this);
@@ -88,11 +102,11 @@ public class AddAppartment extends AppCompatActivity {
 
                 final String address = edtaddress.getText().toString().trim();
                 final String city = edtcity.getText().toString().trim();
-                final String state = edtstate.getText().toString().trim();
+               // final String state = text.getText().toString().trim();
                 final String zipcode = edtzipcode.getText().toString().trim();
                 final String description = edtdescription.getText().toString().trim();
 
-                if(!propertyName.isEmpty() && !ownerName.isEmpty()  && !address.isEmpty() && !city.isEmpty() &&!state.isEmpty() && !zipcode.isEmpty() && imageUri !=null && !description.isEmpty()||description.isEmpty()){
+                if(!propertyName.isEmpty() && !ownerName.isEmpty()  && !address.isEmpty() && !city.isEmpty() && !zipcode.isEmpty() && imageUri !=null && !description.isEmpty()||description.isEmpty() && !textstate.equalsIgnoreCase("Select State")){
 
                     mprogress.setMessage("Uploading.......");
                     mprogress.show();
@@ -111,7 +125,7 @@ public class AddAppartment extends AppCompatActivity {
                                     newPost.child("OwnerName").setValue(ownerName);
                                     newPost.child("Address").setValue(address);
                                     newPost.child("City").setValue(city);
-                                    newPost.child("State").setValue(state);
+                                    newPost.child("State").setValue(textstate);
                                     newPost.child("Zipcode").setValue(zipcode);
                                     newPost.child("Description").setValue(description);
                                     newPost.child("Image").setValue(task.getResult().toString());
@@ -131,5 +145,17 @@ public class AddAppartment extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+         textstate = adapterView.getItemAtPosition(i).toString();
+        //Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_LONG).show();
+        //Log.e("text",text);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

@@ -95,17 +95,41 @@
             android:inputType="text"
             android:minLines="1"
             android:layout_marginTop="20dp"/>
-        <EditText
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="197dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:hint="   Select State :"
+            android:textSize="20dp" />
+
+        <Spinner
             android:id="@+id/stateEditText"
-            android:layout_width="342dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_width="210dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:hint="State"
             android:inputType="text"
             android:minLines="1"
-            android:layout_marginTop="20dp"/>
+            android:text="State" />
+
+
+    </LinearLayout>
+</RelativeLayout>
+
         <EditText
             android:id="@+id/zipCodeEditText"
             android:layout_width="342dp"
@@ -118,7 +142,6 @@
             android:minLines="1"
             android:layout_marginTop="20dp"/>
 
-        android:layout_marginTop="20dp"/>
         <EditText
             android:id="@+id/descriptionEditText"
             android:layout_width="342dp"
