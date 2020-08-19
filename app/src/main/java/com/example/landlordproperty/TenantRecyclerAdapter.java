@@ -20,25 +20,25 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class FlatsRecyclerView extends FirebaseRecyclerAdapter<FlatsPostModel, FlatsRecyclerView.ViewHolder> {
+public class TenantRecyclerAdapter extends FirebaseRecyclerAdapter<TenantPostModel, TenantRecyclerAdapter.ViewHolder> {
 
+    private Context context;
 
-private Context context;
-    public FlatsRecyclerView(@NonNull FirebaseRecyclerOptions<FlatsPostModel> options, Context context) {
+    public TenantRecyclerAdapter(@NonNull FirebaseRecyclerOptions<TenantPostModel> options, Context context) {
         super(options);
         this.context=context;
-
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, final int position, @NonNull FlatsPostModel model) {
-        holder.propertynametv.setText(("Property Name : "+model.getPropertyName()));
-        holder.addresstv.setText(("Address : "+model.getAddress()));
-        holder.flatnotv.setText(("Flat.No : "+model.getFlatNo()));
+    protected void onBindViewHolder(@NonNull ViewHolder holder, final int position, @NonNull TenantPostModel model) {
+        holder.fullName.setText(("FullName : "+model.getFullName()));
+       holder.propertyName.setText(("Property Name : "+model.getPropertyName()));
+       holder.flatNo.setText(("Flat.No : "+model.getFlatNo()));
+       holder.phoneNumber.setText(("PhoneNumber : "+model.getPhone()));
 
         try {
 
-            holder.btndelete.setOnClickListener(new View.OnClickListener() {
+            holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -46,7 +46,7 @@ private Context context;
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    FirebaseDatabase.getInstance().getReference().child("Flats")
+                                    FirebaseDatabase.getInstance().getReference().child("Tenants")
                                             .child(getRef(position).getKey())
                                             .removeValue()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -82,27 +82,25 @@ private Context context;
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_add_flats_recycler_view, parent, false);
+                .inflate(R.layout.add_tenants_design_recycler_view, parent, false);
         return new ViewHolder(view);
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView propertynametv,addresstv,flatnotv;
 
-        //delete
-        Button btndelete;
+        TextView fullName, propertyName, flatNo, phoneNumber;
+        Button btnUpdate,btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //flats
-            propertynametv = itemView.findViewById(R.id.propertynameViewText);
-            flatnotv = itemView.findViewById(R.id.flatnoViewText);
-            addresstv = itemView.findViewById(R.id.addressViewText);
+            fullName = itemView.findViewById(R.id.tenantNameTextView);
+            propertyName = itemView.findViewById(R.id.tenantProprtyNameTextView);
+            flatNo = itemView.findViewById(R.id.tenantFlatNoTextView);
+            phoneNumber = itemView.findViewById(R.id.tenantPhoneNmuberTextView);
+            btnDelete = itemView.findViewById(R.id.tenantBtn_delete);
 
-            //delete
-            btndelete = itemView.findViewById(R.id.btn_delete);
+
         }
     }
 }
