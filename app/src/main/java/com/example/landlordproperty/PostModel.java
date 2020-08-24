@@ -12,7 +12,7 @@ public class PostModel {
     String Image;
 
 
-    //Default Constructor
+//Default Constructor
 
     public PostModel() {
     }

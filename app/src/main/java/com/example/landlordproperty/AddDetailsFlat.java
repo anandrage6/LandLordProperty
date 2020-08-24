@@ -45,6 +45,8 @@ public class AddDetailsFlat extends AppCompatActivity implements IfirebaseLoadDo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_details_flat);
+        //set title on toolbar
+        this.setTitle("Enter Your Flat Details");
 
         //id flat.no
         flatnoedttxt = findViewById(R.id.flat_noEditText);
@@ -108,7 +110,7 @@ public class AddDetailsFlat extends AppCompatActivity implements IfirebaseLoadDo
 
         spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
+                @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //fix first item Click
 

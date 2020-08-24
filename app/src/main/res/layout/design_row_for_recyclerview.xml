@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/design_default_color_on_primary"
     android:orientation="vertical"
     app:cardCornerRadius="5dp"
     app:cardElevation="20dp"
     app:cardUseCompatPadding="true"
     tools:context=".AddAppartment"
     tools:ignore="MissingClass">
-    
+
     <LinearLayout
-        android:layout_marginTop="1dp"
-        android:layout_margin="1dp"
-        android:orientation="vertical"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@android:color/holo_green_light"
+        android:orientation="vertical">
 
 
         <ImageView
@@ -87,19 +89,21 @@
                 android:id="@+id/btn_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="update"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:text="update" />
 
             <Button
                 android:id="@+id/btn_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Delete"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@color/design_default_color_error"
+                android:text="Delete" />
         </LinearLayout>
     </LinearLayout>
-       </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>

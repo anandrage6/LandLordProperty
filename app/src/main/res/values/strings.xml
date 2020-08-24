@@ -39,4 +39,8 @@
         <item>Lakshadeep </item>
         <item>Pondicherry </item>
     </string-array>
+    <string name="err_propertyName"> Enter Valid Property Name</string>
+    <string name="err_ownerName"> Enter Valid Owner Name</string>
+    <string name="err_city"> Enter Valid City Name </string>
+    <string name="err_zipCode"> Enter Valid ZipCode</string>
 </resources>

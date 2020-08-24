@@ -27,15 +27,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RecyclerAdapter extends FirebaseRecyclerAdapter <PostModel,RecyclerAdapter.ViewHolder>{
 
-
+/*
     //Update Part
 private EditText name = null;
 private EditText owner = null;
 private EditText description = null;
 private Button btn = null;
-
+*/
 private  Context context;
     public RecyclerAdapter(@NonNull FirebaseRecyclerOptions<PostModel> options, Context context) {
         super(options);
@@ -56,10 +59,6 @@ private  Context context;
 
         String imageUri = model.getImage();
         Picasso.get().load(imageUri).into(holder.Imageadd);
-
-        // To Show flats details card View
-
-
 
 
         //set onClickListner to Appartment full details
@@ -121,7 +120,23 @@ private  Context context;
             e.printStackTrace();
             Log.e("Delete Error",e.getMessage());
         }
+        //update data
+        holder.btnupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, UpdateAppartments.class);
+                i.putExtra("PropertyName",model.getPropertyName());
+                i.putExtra("OwnerName", model.getOwnerName());
+                i.putExtra("Address",model.getAddress());
+                i.putExtra("City",model.getCity());
+                i.putExtra("State",model.getState());
+                i.putExtra("Zipcode",model.getZipcode());
+                i.putExtra("Description", model.getDescription());
+                view.getContext().startActivity(i);
 
+            }
+        });
+/*
         //update OnclickListner
        holder.btnupdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,13 +150,13 @@ private  Context context;
 
 
 
-                View holderView = dialog.getHeaderView();
+                View holderView = (LinearLayout) dialog.getHeaderView();
 
                 try {
-                   name = (EditText) holderView.findViewById(R.id.updateProperty);
-                  /*  owner =  (EditText) holderView.findViewById(R.id.updateowner);
-                    description = (EditText)  holderView.findViewById(R.id.updatedescription);
-                    btn = (Button) holderView.findViewById(R.id.btn_update);
+                   final EditText name = (EditText) holderView.findViewById(R.id.updateProperty);
+                  final EditText owner =  (EditText) holderView.findViewById(R.id.updateowner);
+                   final EditText description = (EditText)  holderView.findViewById(R.id.updatedescription);
+                   Button btnSave = (Button) holderView.findViewById(R.id.btn_save);
 
 
                     name.setText(model.getPropertyName());
@@ -149,9 +164,10 @@ private  Context context;
                     description.setText(model.getDescription());
 
 
-                    btn.setOnClickListener(new View.OnClickListener() {
+                    btnSave.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
 
                             Map<String, Object> map = new HashMap<String, Object>();
                             map.put("PropertyName", name.getText().toString());
@@ -170,7 +186,7 @@ private  Context context;
                             });
                         }
                     });
-                */
+
                 }catch (Exception e){
                     e.printStackTrace();
                     Log.e("Update Error",e.getMessage());
@@ -182,6 +198,8 @@ private  Context context;
             }
         });
 
+
+ */
     }
 
 

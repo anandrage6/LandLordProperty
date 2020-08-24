@@ -24,6 +24,8 @@ public class AddFlats extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_flats);
+        //set title on toolbar
+        this.setTitle("Flats");
 
         floattingbtnadd = findViewById(R.id.addflatsfloatingaddbtn);
         floattingbtnadd.setOnClickListener(new View.OnClickListener() {

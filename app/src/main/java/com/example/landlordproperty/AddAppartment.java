@@ -11,11 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import static com.basgeekball.awesomevalidation.ValidationStyle.BASIC;
 
 public class AddAppartment extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -40,13 +45,17 @@ public class AddAppartment extends AppCompatActivity implements AdapterView.OnIt
     ProgressDialog mprogress;
     String textstate;
 
-    //String MobilePattern = "[0-9]{10}";
+    //Awesome Validation
+    AwesomeValidation awesomeValidation;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appartment);
+        //set title on toolbar
+        this.setTitle("Enter Your Property Details");
+
 
         //finding id's
         imageBtn = findViewById(R.id.imageButton);
@@ -61,6 +70,17 @@ public class AddAppartment extends AppCompatActivity implements AdapterView.OnIt
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child("Appartments");
         mStorage = FirebaseStorage.getInstance().getReference();
+        //Awesome
+        awesomeValidation = new AwesomeValidation(BASIC);
+        awesomeValidation.addValidation(AddAppartment.this, R.id.propertyNameEditText, "[a-zA-Z\\s]+", R.string.err_propertyName);
+        awesomeValidation.addValidation(AddAppartment.this, R.id.ownerNameEditText, "[a-zA-Z\\s]+", R.string.err_ownerName);
+        awesomeValidation.addValidation(AddAppartment.this, R.id.cityEditText, "[a-zA-Z\\s]+", R.string.err_city);
+        awesomeValidation.addValidation(AddAppartment.this, R.id.zipCodeEditText, "^[1-9][0-9]{5}$", R.string.err_zipCode);
+
+
+        //awesomeValidation.addValidation(AddAppartment.this, R.id.edt_tel, RegexTemplate.TELEPHONE, R.string.err_tel);
+        //awesomeValidation.addValidation(activity, R.id.edt_email, android.util.Patterns.EMAIL_ADDRESS, R.string.err_email);
+
 
 
         //spinner
@@ -96,53 +116,61 @@ public class AddAppartment extends AppCompatActivity implements AdapterView.OnIt
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String propertyName = edtpropertyName.getText().toString().trim();
+                if(awesomeValidation.validate()) {
+                    final String propertyName = edtpropertyName.getText().toString().trim();
+                    final String ownerName = edtownerName.getText().toString().trim();
+                    final String address = edtaddress.getText().toString().trim();
+                    final String city = edtcity.getText().toString().trim();
+                    // final String state = text.getText().toString().trim();
+                    final String zipcode = edtzipcode.getText().toString().trim();
+                    final String description = edtdescription.getText().toString().trim();
 
-                    final String ownerName = (edtownerName.getText().toString().trim());
+                    if (!propertyName.isEmpty() && !ownerName.isEmpty() && !address.isEmpty() && !city.isEmpty() && !zipcode.isEmpty() && imageUri != null && !description.isEmpty() || description.isEmpty() && !textstate.equalsIgnoreCase("Select State")) {
 
-                final String address = edtaddress.getText().toString().trim();
-                final String city = edtcity.getText().toString().trim();
-               // final String state = text.getText().toString().trim();
-                final String zipcode = edtzipcode.getText().toString().trim();
-                final String description = edtdescription.getText().toString().trim();
+                        mprogress.setMessage("Uploading.......");
+                        mprogress.show();
 
-                if(!propertyName.isEmpty() && !ownerName.isEmpty()  && !address.isEmpty() && !city.isEmpty() && !zipcode.isEmpty() && imageUri !=null && !description.isEmpty()||description.isEmpty() && !textstate.equalsIgnoreCase("Select State")){
+                        StorageReference filepath = mStorage.child("image_Appartments").child(imageUri.getLastPathSegment());
+                        filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Task<Uri> downloadUri = taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Uri> task) {
 
-                    mprogress.setMessage("Uploading.......");
-                    mprogress.show();
+                                        String t = task.getResult().toString();
+                                        DatabaseReference newPost = mReference.push();
+                                        newPost.child("PropertyName").setValue(propertyName);
+                                        newPost.child("OwnerName").setValue(ownerName);
+                                        newPost.child("Address").setValue(address);
+                                        newPost.child("City").setValue(city);
+                                        newPost.child("State").setValue(textstate);
+                                        newPost.child("Zipcode").setValue(zipcode);
+                                        newPost.child("Description").setValue(description);
+                                        newPost.child("Image").setValue(task.getResult().toString());
+                                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
 
-                    StorageReference filepath = mStorage.child("image_Appartments").child(imageUri.getLastPathSegment());
-                    filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Task<Uri> downloadUri = taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Uri> task) {
+                                        mprogress.dismiss();
 
-                                    String t =  task.getResult().toString();
-                                    DatabaseReference  newPost = mReference.push();
-                                    newPost.child("PropertyName").setValue(propertyName);
-                                    newPost.child("OwnerName").setValue(ownerName);
-                                    newPost.child("Address").setValue(address);
-                                    newPost.child("City").setValue(city);
-                                    newPost.child("State").setValue(textstate);
-                                    newPost.child("Zipcode").setValue(zipcode);
-                                    newPost.child("Description").setValue(description);
-                                    newPost.child("Image").setValue(task.getResult().toString());
-
-                                    mprogress.dismiss();
-
-                                    Intent intent = new Intent(AddAppartment.this, Appartments.class);
-                                    startActivity(intent);
+                                        Intent intent = new Intent(AddAppartment.this, Appartments.class);
+                                        startActivity(intent);
 
 
-                                }
-                            });
+                                    }
+                                });
 
-                        }
-                    });
+                            }
+                        });
+
+                    }
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_LONG).show();
 
                 }
+
+
+
             }
         });
     }

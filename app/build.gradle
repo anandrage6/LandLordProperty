@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 28
     buildToolsVersion "30.0.1"
 
     defaultConfig {
         applicationId "com.example.landlordproperty"
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -45,6 +45,9 @@ dependencies {
 
     //dialogplus library
     implementation 'com.orhanobut:dialogplus:1.11@aar'
+
+    //Awesome Validation
+    implementation 'com.basgeekball:awesome-validation:4.2'
 
 
 

@@ -35,9 +35,10 @@ public class AddTenantDetails extends AppCompatActivity {
     ArrayAdapter<String> arrayproperty;
 
     List<String> allflats;
-
     ArrayAdapter<String> arrayflats;
+
     TenantInterface tenantInterface;
+    List<FlatsPostModel> flatsall;
     Spinner spinnerproperty, spinnerflats;
 
 
@@ -55,6 +56,8 @@ public class AddTenantDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tenant_details);
+        //set title on toolbar
+        this.setTitle("Enter Your Tenant Details");
 
 
         //input part
@@ -68,6 +71,8 @@ public class AddTenantDetails extends AppCompatActivity {
         propertytv = findViewById(R.id.spinnerPropertyNametv);
         flatstv = findViewById(R.id.spinnerFlatnotv);
         btnsave = findViewById(R.id.tenantbtn_save);
+        spinnerproperty = findViewById(R.id.spinnerproperty);
+        spinnerflats = findViewById(R.id.spinnerflat);
 
 
         Calendar calendar = Calendar.getInstance();
@@ -112,6 +117,7 @@ public class AddTenantDetails extends AppCompatActivity {
 
 
 
+
         //spinner part
         try {
 
@@ -135,15 +141,44 @@ public class AddTenantDetails extends AppCompatActivity {
                     arrayproperty = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, allAppartments);
 
                     spinnerproperty.setAdapter(arrayproperty);
-                    //String value = String.valueOf(spinnerproperty);
-                    //
-                    //propertytv.setText(spinnerproperty.getSelectedItem().toString());
-                    // Log.e("spinnerproperty", String.valueOf(propertytv));
+
                     spinnerproperty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                              propertytv.setText(spinnerproperty.getItemAtPosition(i).toString());
-                            //String result = arrayproperty.getItem(i);
+                            String result = arrayproperty.getItem(i);
+
+                            mReferenceTenants.child("Flats").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for (DataSnapshot app : snapshot.getChildren()) {
+                                        String flatNo = app.child("FlatNo").getValue(String.class);
+                                        //String flats = app.child("PropertyName").getValue(String.class);
+                                        allflats.add(flatNo);
+
+                                    }
+                                    arrayflats = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, allflats);
+
+                                    spinnerflats.setAdapter(arrayflats);
+                                    spinnerflats.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                            flatstv.setText(spinnerflats.getItemAtPosition(i).toString());
+                                        }
+
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                        }
+                                    });
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
 
 
                         }
@@ -167,9 +202,6 @@ public class AddTenantDetails extends AppCompatActivity {
         }
 
 
-
-
-
         //insertpart
         mDatabaseTenants = FirebaseDatabase.getInstance();
         mReferenceTenants = mDatabaseTenants.getReference().child("Tenants");
@@ -190,7 +222,7 @@ public class AddTenantDetails extends AppCompatActivity {
                 final String propertyname = propertytv.getText().toString().trim();
                 final String flatno = flatstv.getText().toString().trim();
 
-                if (!fullname.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !rent.isEmpty() && !startdate.isEmpty() && !enddate.isEmpty() && !propertyname.isEmpty()  && (!securitydeposit.isEmpty() || securitydeposit.isEmpty())) {
+                if (!fullname.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !rent.isEmpty() && !startdate.isEmpty() && !enddate.isEmpty() && !propertyname.isEmpty() && (!securitydeposit.isEmpty() || securitydeposit.isEmpty())) {
                     mprogress.setMessage("Uploading.......");
                     mprogress.show();
                     DatabaseReference tenants = mReferenceTenants.push();
@@ -202,7 +234,7 @@ public class AddTenantDetails extends AppCompatActivity {
                     tenants.child("StartDate").setValue(startdate);
                     tenants.child("EndDate").setValue(enddate);
                     tenants.child("PropertyName").setValue(propertyname);
-                   // tenants.child("FlatNo").setValue(flatno);
+                    // tenants.child("FlatNo").setValue(flatno);
 
                     Toast.makeText(getApplicationContext(), "Successfully Saved", Toast.LENGTH_LONG).show();
                     mprogress.dismiss();
@@ -220,41 +252,15 @@ public class AddTenantDetails extends AppCompatActivity {
         });
 
 
+        /*
         //another Spinner
 
-
-        /*
-
-        //Spinner Part
-        propertytv = findViewById(R.id.spinnerPropertyNametv);
-        flatstv = findViewById(R.id.spinnerFlatnotv);
-        spinnerproperty = findViewById(R.id.spinnerproperty);
-        spinnerflats = findViewById(R.id.spinnerflat);
         spinnerproperty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                    final FlatsPostModel appartments = allAppart.get(i);
-                    propertytv.setText(appartments.getPropertyName());
-
-                //flatstv.setText(appartments.getFlatNo());
-
-              spinnerflats.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                   @Override
-                   public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                       FlatsPostModel flatsPostModel = allAppart.get(i);
-                       flatstv.setText(flatsPostModel.getFlatNo());
-
-                   }
-
-                   @Override
-                   public void onNothingSelected(AdapterView<?> adapterView) {
-
-                   }
-               });
-
+                FlatsPostModel flats = flatsall.get(i);
+                propertytv.setText(flats.getPropertyName());
             }
-
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -264,69 +270,49 @@ public class AddTenantDetails extends AppCompatActivity {
 
         mReferenceTenants = FirebaseDatabase.getInstance().getReference("Flats");
         //interface
-        tenantInterface = (TenantInterface) this;
+        tenantInterface = this;
 
         mReferenceTenants.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<FlatsPostModel> appartmentslist = new ArrayList<>();
-                for (DataSnapshot Appartmentssnapshot : snapshot.getChildren()) {
+                for(DataSnapshot Appartmentssnapshot : snapshot.getChildren()){
                     appartmentslist.add(Appartmentssnapshot.getValue(FlatsPostModel.class));
                 }
-                tenantInterface.onFireBaseLoadSuccess(appartmentslist);
+                tenantInterface.onSuccess(appartmentslist);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                //ifirebaseloaddone.onFireBaseLoadFailed(databaseError.getmessage());
 
             }
         });
 
-
-        //
+//
     }
-    //
-
-
-
+//
     @Override
-    public void onFireBaseLoadSuccess(List<FlatsPostModel> flats) {
-        allAppart = flats;
-        List<String> propertynameselect = new ArrayList<>();
-        List<String> Dupicate = new ArrayList<>();
-        List<String> flatno = new ArrayList<>();
+    public void onSuccess(List<FlatsPostModel> flats) {
+        flatsall = flats;
+        List<String> listFlats = new ArrayList<>();
+
         //looping all appartments
-        for (FlatsPostModel appart : flats) {
-            Dupicate.add(appart.getPropertyName());
-            flatno.add(appart.getFlatNo());
-            for (String apparement : Dupicate) {
-                if (!propertynameselect.contains(apparement)) {
-                    propertynameselect.add(apparement);
+        for(FlatsPostModel flt : flats){
+            listFlats.add(flt.getPropertyName());
 
-
-
-                    //create Adapter and set for spinner
-                    arrayproperty = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, propertynameselect);
-                    arrayproperty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerproperty.setAdapter(arrayproperty);
-                    arrayflats = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, flatno);
-                    spinnerflats.setAdapter(arrayflats);
-
-
-                }
-            }
+            //create Adapter and set for spinner
+            ArrayAdapter<String> flatsAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,listFlats);
+            spinnerproperty.setAdapter(flatsAdapter);
         }
     }
 
+    @Override
+    public void onFailed(String message) {
 
-            @Override
-            public void onFireBaseLoadFailed (String message){
-
-            }*/
-
+    }*/
     }
 }
+
 
 
 

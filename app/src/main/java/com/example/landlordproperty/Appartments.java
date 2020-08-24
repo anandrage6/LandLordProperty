@@ -21,6 +21,9 @@ public class Appartments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appartments);
+        //set title on toolbar
+        this.setTitle("My Properties");
+
         btnadd = findViewById(R.id.addbtn);
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -22,6 +22,9 @@ public class AddTenant extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tenant);
+        //set title on toolbar
+        this.setTitle("Tenants");
+
         floattingbtnadd = findViewById(R.id.addbtnTenant);
         floattingbtnadd.setOnClickListener(new View.OnClickListener() {
             @Override
