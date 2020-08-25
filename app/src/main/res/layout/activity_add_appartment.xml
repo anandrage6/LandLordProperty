@@ -20,7 +20,7 @@
             android:layout_height="1200dp"
             android:layout_margin="5dp"
             android:layout_marginTop="8dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/holo_purple"
             android:orientation="vertical">
 
             <RelativeLayout

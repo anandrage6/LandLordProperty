@@ -30,6 +30,10 @@ public class PostModel {
         Image = image;
     }
 
+    public PostModel(String propertyName, String ownerName, String address, String city, String zipcode, String description) {
+    }
+
+
     //Getters and Setters
 
     public String getPropertyName() {

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateAppartments"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     app:cardCornerRadius="1dp"
     app:cardElevation="15dp"
@@ -19,7 +17,7 @@
             android:layout_height="1200dp"
             android:layout_margin="5dp"
             android:layout_marginTop="8dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/darker_gray"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -31,15 +29,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Enter Property Details"
+                    android:text="Update Property Details"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
 
             <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="match_parent"
+                android:id="@+id/updateImageButton"
+                android:layout_width="368dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
@@ -110,21 +108,22 @@
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_width="197dp"
+                        android:layout_width="145dp"
                         android:layout_height="49dp"
+                        android:layout_marginLeft="18dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:hint="   Select State :"
+                        android:hint=" Select State :"
                         android:textSize="20dp" />
 
                     <Spinner
                         android:id="@+id/updateStateEditText"
-                        android:layout_width="210dp"
+                        android:layout_width="188dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="20dp"
                         android:inputType="text"
                         android:minLines="1"
                         android:text="State" />
@@ -159,7 +158,7 @@
 
             <Button
                 android:id="@+id/updateBtn"
-                android:layout_width="match_parent"
+                android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
@@ -174,6 +173,5 @@
 
         </LinearLayout>
     </ScrollView>
-
 
 </androidx.cardview.widget.CardView>

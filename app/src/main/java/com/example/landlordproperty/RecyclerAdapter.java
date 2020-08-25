@@ -9,10 +9,14 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -120,48 +124,43 @@ private  Context context;
             e.printStackTrace();
             Log.e("Delete Error",e.getMessage());
         }
-        //update data
-        holder.btnupdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, UpdateAppartments.class);
-                i.putExtra("PropertyName",model.getPropertyName());
-                i.putExtra("OwnerName", model.getOwnerName());
-                i.putExtra("Address",model.getAddress());
-                i.putExtra("City",model.getCity());
-                i.putExtra("State",model.getState());
-                i.putExtra("Zipcode",model.getZipcode());
-                i.putExtra("Description", model.getDescription());
-                view.getContext().startActivity(i);
 
-            }
-        });
-/*
         //update OnclickListner
        holder.btnupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final DialogPlus dialog = DialogPlus.newDialog(context)
                         .setGravity(Gravity.CENTER)
-                        .setMargin(50,0,50,0)
-                        .setContentHolder(new com.orhanobut.dialogplus.ViewHolder(R.layout.activity_content))
+                        .setMargin(0,0,0,0)
+                        .setContentHolder(new com.orhanobut.dialogplus.ViewHolder(R.layout.update_apartment_content))
                         .setExpanded(false)  // This will enable the expand feature, (similar to android L share dialog)
                         .create();
 
 
 
-                View holderView = (LinearLayout) dialog.getHeaderView();
+                View myView = dialog.getHolderView();
 
                 try {
-                   final EditText name = (EditText) holderView.findViewById(R.id.updateProperty);
-                  final EditText owner =  (EditText) holderView.findViewById(R.id.updateowner);
-                   final EditText description = (EditText)  holderView.findViewById(R.id.updatedescription);
-                   Button btnSave = (Button) holderView.findViewById(R.id.btn_save);
+                   final EditText name = (EditText) myView.findViewById(R.id.updatePropertyNameEditText);
+                  final EditText owner =  (EditText) myView.findViewById(R.id.updateOwnerNameEditText);
+                   final EditText address = (EditText) myView.findViewById(R.id.updateAddressEditText);
+                    final EditText city = (EditText) myView.findViewById(R.id.updateCityEditText);
+                    //final Spinner state = (Spinner) myView.findViewById(R.id.updateStateEditText);
+
+                    final EditText zipcode = (EditText) myView.findViewById(R.id.updateZipCodeEditText);
+                    final EditText description = (EditText)  myView.findViewById(R.id.updateDescriptionEditText);
+                    final ImageView image =  myView.findViewById(R.id.updateImageButton);
+                   Button btnSave = (Button) myView.findViewById(R.id.updateBtn);
 
 
                     name.setText(model.getPropertyName());
                     owner.setText(model.getOwnerName());
+                    address.setText(model.getAddress());
+                    city.setText(model.getCity());
+                  // image.
+                    zipcode.setText(model.getZipcode());
                     description.setText(model.getDescription());
+
 
 
                     btnSave.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +171,10 @@ private  Context context;
                             Map<String, Object> map = new HashMap<String, Object>();
                             map.put("PropertyName", name.getText().toString());
                             map.put("OwnerName", owner.getText().toString());
+                            map.put("Address",address.getText().toString());
+                            map.put("City", city.getText().toString());
+                            //map.put("State",state.setAdapter(adapter));
+                            map.put("Zipcode", zipcode.getText().toString());
                             map.put("Description", description.getText().toString());
 
                             FirebaseDatabase.getInstance().getReference().child("Appartments")
@@ -179,6 +182,7 @@ private  Context context;
                                     .updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(context, "Successfully Updated", Toast.LENGTH_LONG).show();
                                     dialog.dismiss();
 
 
@@ -199,7 +203,7 @@ private  Context context;
         });
 
 
- */
+
     }
 
 
@@ -225,9 +229,6 @@ private  Context context;
         Button btnupdate;
         //Delete Button
         Button btndelete;
-
-
-
 
 
         public ViewHolder(@NonNull View itemView) {
