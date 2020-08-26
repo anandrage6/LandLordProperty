@@ -100,6 +100,7 @@ public class AddAppartment extends AppCompatActivity implements AdapterView.OnIt
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 startActivityForResult(intent,Gallery_Code);
+
             }
         });
     }
@@ -140,6 +141,7 @@ public class AddAppartment extends AppCompatActivity implements AdapterView.OnIt
 
                                         String t = task.getResult().toString();
                                         DatabaseReference newPost = mReference.push();
+                                        newPost.child("Id").setValue(newPost.getKey());
                                         newPost.child("PropertyName").setValue(propertyName);
                                         newPost.child("OwnerName").setValue(ownerName);
                                         newPost.child("Address").setValue(address);

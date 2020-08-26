@@ -9,6 +9,7 @@ public class PostModel {
     String State;
     String Zipcode;
     String Description;
+    String Id;
     String Image;
 
 
@@ -18,8 +19,10 @@ public class PostModel {
     }
 
 
+
+
     //Parametarised Constuctor
-    public PostModel(String propertyName, String ownerName, String address, String city, String state, String zipcode, String description, String image) {
+    public PostModel(String propertyName, String ownerName, String address, String city, String state, String zipcode, String description, String image, String id) {
         PropertyName = propertyName;
         OwnerName = ownerName;
         Address = address;
@@ -28,11 +31,8 @@ public class PostModel {
         Zipcode = zipcode;
         Description = description;
         Image = image;
+        Id = id;
     }
-
-    public PostModel(String propertyName, String ownerName, String address, String city, String zipcode, String description) {
-    }
-
 
     //Getters and Setters
 
@@ -98,6 +98,14 @@ public class PostModel {
 
     public void setImage(String image) {
         Image = image;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
 }

@@ -1,9 +1,11 @@
 package com.example.landlordproperty;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -28,11 +31,16 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.StorageReference;
 import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.app.Activity.RESULT_OK;
+import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class RecyclerAdapter extends FirebaseRecyclerAdapter <PostModel,RecyclerAdapter.ViewHolder>{
 
@@ -42,7 +50,11 @@ private EditText name = null;
 private EditText owner = null;
 private EditText description = null;
 private Button btn = null;
+
 */
+private Uri imageUri=null;
+private static final int Gallery_Code=1;
+StorageReference mStorage;
 private  Context context;
     public RecyclerAdapter(@NonNull FirebaseRecyclerOptions<PostModel> options, Context context) {
         super(options);
@@ -125,6 +137,21 @@ private  Context context;
             Log.e("Delete Error",e.getMessage());
         }
 
+        holder.btnupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(),UpdateDataApartments.class);
+                i.putExtra("PropertyName",model.getPropertyName());
+                i.putExtra("OwnerName",model.getOwnerName());
+                i.putExtra("Address",model.getAddress());
+                i.putExtra("City",model.getCity());
+                i.putExtra("Zipcode",model.getZipcode());
+                i.putExtra("Description",model.getDescription());
+                i.putExtra("Id",model.getId());
+                view.getContext().startActivity(i);
+            }
+        });
+        /*
         //update OnclickListner
        holder.btnupdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +165,9 @@ private  Context context;
 
 
 
+
                 View myView = dialog.getHolderView();
+
 
                 try {
                    final EditText name = (EditText) myView.findViewById(R.id.updatePropertyNameEditText);
@@ -149,23 +178,46 @@ private  Context context;
 
                     final EditText zipcode = (EditText) myView.findViewById(R.id.updateZipCodeEditText);
                     final EditText description = (EditText)  myView.findViewById(R.id.updateDescriptionEditText);
-                    final ImageView image =  myView.findViewById(R.id.updateImageButton);
+
+                    final ImageButton image =  myView.findViewById(R.id.updateImageButton);
+                    //final EditText imagetext = myView.findViewById(R.id.updateImageButton);
+
                    Button btnSave = (Button) myView.findViewById(R.id.updateBtn);
+
+                    String imageUrl = model.getImage();
+                    Picasso.get().load(imageUrl).into(image);
 
 
                     name.setText(model.getPropertyName());
                     owner.setText(model.getOwnerName());
                     address.setText(model.getAddress());
                     city.setText(model.getCity());
-                  // image.
+                    //state
                     zipcode.setText(model.getZipcode());
                     description.setText(model.getDescription());
+                    //image.setImageURI(Uri.parse(imageUrl));
+
+                    image.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                            intent.setType("image/*");
+                            ((Activity) context).startActivityForResult(intent,Gallery_Code);
+                        }
+                    });
+
+
+
+                    StorageReference filepath = mStorage.child("image_Appartments").child(getRef(position).getKey());
+
+
 
 
 
                     btnSave.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
 
 
                             Map<String, Object> map = new HashMap<String, Object>();
@@ -176,6 +228,8 @@ private  Context context;
                             //map.put("State",state.setAdapter(adapter));
                             map.put("Zipcode", zipcode.getText().toString());
                             map.put("Description", description.getText().toString());
+                           //map.put("Image",);
+
 
                             FirebaseDatabase.getInstance().getReference().child("Appartments")
                                     .child(getRef(position).getKey())
@@ -199,12 +253,17 @@ private  Context context;
                 dialog.show();
 
 
+
             }
         });
 
 
+         */
+
 
     }
+
+
 
 
     //viewholder to pass data to appartments with extra activity_layout
