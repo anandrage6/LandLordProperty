@@ -140,14 +140,27 @@ private  Context context;
         holder.btnupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                final String cProperty = getItem(position).getPropertyName();
+                final String cOwner = getItem(position).getOwnerName();
+                final String cAddress = getItem(position).getAddress();
+                final String cCity = getItem(position).getCity();
+                final String cZipcode = getItem(position).getZipcode();
+                final String cDescription = getItem(position).getDescription();
+                final String cImage = getItem(position).getImage();
+                final String cId = getItem(position).getId();
+
+
+
                 Intent i = new Intent(view.getContext(),UpdateDataApartments.class);
-                i.putExtra("PropertyName",model.getPropertyName());
-                i.putExtra("OwnerName",model.getOwnerName());
-                i.putExtra("Address",model.getAddress());
-                i.putExtra("City",model.getCity());
-                i.putExtra("Zipcode",model.getZipcode());
-                i.putExtra("Description",model.getDescription());
-                i.putExtra("Id",model.getId());
+                i.putExtra("PropertyName",cProperty);
+                i.putExtra("OwnerName",cOwner);
+                i.putExtra("Address",cAddress);
+                i.putExtra("City",cCity);
+                i.putExtra("Zipcode",cZipcode);
+                i.putExtra("Description",cDescription);
+                i.putExtra("Image",cImage);
+                i.putExtra("Id", cId);
                 view.getContext().startActivity(i);
             }
         });
